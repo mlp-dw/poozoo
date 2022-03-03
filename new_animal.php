@@ -3,16 +3,16 @@
 include './config/autoload.php';
 $data = array(
     'name'=> $_POST['animal-name'],
-    'size'=> $_POST['animal-size'],
     'age'=> $_POST['animal-age'],
+    'type'=> $_POST['animal-specie'],
+    'size'=> $_POST['animal-size'],
     'weight'=> $_POST["animal-weight"],
-    'type'=> $_POST['animal-specie']
 );
 switch ($data['type']) {
     case 'tiger':
     $animal = new Tiger($data);
         break;
-    case 'fich':
+    case 'fish':
     $animal = new Fish($data);
         break;
             case 'eagle':
