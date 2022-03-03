@@ -1,0 +1,19 @@
+.tiger {
+    background-image: url('https://i.pinimg.com/550x/98/14/99/9814990cbb8e72f752af8fd6d0f7f6d0.jpg');
+}
+
+.bear {
+    background-image: url('https://previews.123rf.com/images/komissar007/komissar0071304/komissar007130400018/19143251-un-logotipo-de-la-cabeza-del-oso-%C3%A9ste-es-el-ejemplo-ideal-para-la-mascota-y-el-tatuaje-o-una-camiset.jpg');
+}
+
+.eagle {
+    background-image: url('https://media.istockphoto.com/vectors/eagle-face-vector-id824179282');
+}
+
+.fish {
+    background-image: url('https://img.pixers.pics/pho_wat(s3:700/FO/33/61/28/14/700_FO33612814_9ab2b9e7745c49b9f1a16c8e4dcea654.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/posters-angel-fish-tattoo.jpg.jpg');
+}
+
+input, select {
+    border: 1px solid grey;
+}
