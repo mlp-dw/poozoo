@@ -1,6 +1,6 @@
 <?php
 
-include './config/autoload.php';
+include '../config/autoload.php';
 $data = array(
     'name'=> $_POST['animal-name'],
     'age'=> $_POST['animal-age'],

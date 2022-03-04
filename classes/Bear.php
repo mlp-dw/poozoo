@@ -17,7 +17,7 @@ class Bear extends Animal{
     }
     public function makeSound(){
 
-        echo 'greeee ';
+        echo 'grrrrrr ';
        }
 
 }

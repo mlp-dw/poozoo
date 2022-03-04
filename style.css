@@ -17,3 +17,15 @@
 input, select {
     border: 1px solid grey;
 }
+
+.marine {
+    background-image: url("https://st.depositphotos.com/2627021/4235/i/600/depositphotos_42356781-stock-photo-underwater-view-with-sandy-seabed.jpg");
+}
+
+.aviary {
+    background-image: url("https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/4/7/3/47343047c5_105832_ciel-bleu-01.jpg");
+}
+
+.normal {
+    background-image: url("https://cdn4.regie-agricole.com/ulf/CMS_Content/1/articles/202757/fiches_Prairie_23902-1000x562.JPG");
+}
