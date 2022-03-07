@@ -18,5 +18,6 @@ switch ($data['type']) {
         
 }
 $employee = new Employee;
-
 $employee->createPaddock($paddock);
+
+header("Location: ../index.php");

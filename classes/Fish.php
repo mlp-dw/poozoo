@@ -16,7 +16,7 @@ class Fish extends Animal{
     }
     public function makeSound(){
 
-        echo 'po po po bagera';
+        echo "splash ! (Vous avez reçu de l'eau en pleine tête)";
        }
 }
 

@@ -31,12 +31,19 @@
             <option value="fish">Poisson</option>
             <option value="bear">Ours</option>
         </select>
-        <!-- <label for="paddock-type-input">Enclos</label>
-        <select name="paddock-type" id="paddock-type-input">
-            <option value="normal">Normal</option>
-            <option value="aviary">Volière</option>
-            <option value="marine">Aquarium</option>
-        </select> -->
+        <label for="paddock-id-input">Enclos</label>
+            <select name="paddock-id" id="paddock-id-input">
+            <?php
+            $employee = new Employee();
+            $paddocksName = $employee->showPaddocks();
+
+            foreach ($paddocksName as $paddockName) {
+            ?>
+                <option value="<?=$paddockName->id;?>"><?=$paddockName->name;?></option>
+            <?php
+            }?>
+            
+            </select>
         
         <button type="submit" class="m-2 p-2 border bg-yellow-100 hover:bg-yellow-50">Créer</button>
     </form>
@@ -76,7 +83,6 @@
     <div class="zoo flex flex-wrap ">
         <div class="enclosure w-96 h-96 m-3 border border-green-400 border-2 rounded-xl flex flex-wrap justify-center">
             <?php
-            $employee = new Employee();
             $animals = $employee->showAnimals();
 
             foreach ($animals as $animal) {
@@ -102,31 +108,28 @@
     </div>
 
     <?php
-        $employee = new Employee();
         $paddocks = $employee->showPaddocks();
 
         foreach ($paddocks as $paddock) {
     ?>
 
-    <div class="zoo flex flex-wrap ">
+    <div class="zoo flex flex-wrap m-3">
         <div class="flex-column">
             <h5 class="font-bold"><?= $paddock->name; ?></h5>
-            <p>Type :  <?= $paddock->getType(); ?></p>
             <p>Propreté : <?= $paddock->isClean; ?></p>
-            <p>Animaux : <?= $paddock->numberOfAnimals?>/6</p>
+            <p>Animaux : 0/6</p>
             <button class="bg-cyan-600 p-2 m-1 text-white rounded-full hover:bg-pink-800 hover:rounded-none">Transferer</button><br>
             <button class="bg-cyan-600 p-2 m-1 text-white rounded-full hover:bg-pink-800 hover:rounded-none">Nettoyer</button><br>
             <button class="bg-cyan-600 p-2 m-1 text-white rounded-full hover:bg-pink-800 hover:rounded-none">Ajouter</button>
 
         </div>
-        <div class="enclosure w-96 h-96 m-3 <?= $paddock->getType() ?> flex flex-wrap justify-center">
+        <div class="enclosure w-96 h-96 m-3 <?= $paddock->getType()?> flex flex-wrap justify-center">
            
-            <!-- <?php
-            $employee = new Employee();
+            <?php
             $animals = $employee->showAnimals();
 
             foreach ($animals as $animal) {
-                ?> -->
+                ?>
 
                         <!-- <div class="group animal <?= $animal->getType() ?> relative w-28 h-44 m-1 border border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
                             <div class="font-bold"><?= $animal->name; ?></div>
@@ -141,9 +144,9 @@
                                 <div>Dort : <?= $animal->isSleeping; ?></div>
                             </div>
                         </div> -->
-                        <!-- <?php
+            <?php
             }
-            ?> -->
+            ?>
         </div>
     </div>
     <?php

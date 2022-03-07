@@ -1,11 +1,11 @@
 <?php
 
 abstract class Paddock  {
-
+    public $id;
     public $name;
     public $type;
-    public $isClean;
-    public $numberOfAnimals;
+    public $isClean;  
+    public $animals = [];
 
     function __construct($data){
         $this->hydrate($data);
@@ -15,18 +15,21 @@ abstract class Paddock  {
         $this->isClean = "clean";
     }
 
-    public function countAnimal(){
-        $this->numberOfAnimals = 0;
+    public function putAnimalInPaddock(){
+        
     }
 
     private function hydrate($data) {
+        $this->id = $data["id"] ;
         $this->name = $data['name'] ;
-        $this->age = $data['type'] ;
+        $this->type = $data['type'] ;
         $this->isClean = $data['is_clean'] ?? "clean" ;
-        $this->numberOfAnimals = $data['number_of_animals'] ?? 0 ;
     }
 
     abstract function getType();
+    abstract function getAnimal();
+
+    
 
 }
 

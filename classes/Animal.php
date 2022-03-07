@@ -8,6 +8,7 @@ abstract class Animal  {
     public $isSleeping;
     public $isHungry;
     public $isSick;
+    public $paddockId;
 
     function __construct($data){
         $this->hydrate($data);
@@ -35,6 +36,7 @@ abstract class Animal  {
         $this->isSleeping = $data['is_sleeping'] ?? 0 ;
         $this->isHungry = $data['is_hungry'] ?? 0 ;
         $this->isSick = $data['is_sick'] ?? 0 ;
+        $this->paddockId = $data["paddock_id"];
     }
 
     abstract function getType();

@@ -6,9 +6,13 @@ class Employee{
 public function createAnimal($animal){
 
     include '../config/db.php';
-    $req = $db->prepare("INSERT INTO animals (name, type, size, weight, age) VALUES (?,?,?,?,?)");
-    $req->execute([$animal->name, $animal->getType(), $animal->size, $animal->weight, $animal->age]);
+    $req = $db->prepare("INSERT INTO animals (name, type, size, weight, age, paddock_id) VALUES (?,?,?,?,?,?)");
+    $req->execute([$animal->name, $animal->getType(), $animal->size, $animal->weight, $animal->age, $animal->paddockId]);
 
+    // $animalId = $db->lastInsertId();
+
+    // $paddockChoice = $db->prepare("INSERT INTO paddocks (type, id) VALUES (?, ?)");
+    // $paddockChoice->execute($animal-> $qqch, $animalId]);
 
 }
 public function showAnimals(){
@@ -87,6 +91,34 @@ public function showPaddocks(){
     }
     return $paddocks;
 }
+
+// public function putAnimalInPaddock($animal){
+//     include './config/db.php';
+//     $request = $db->prepare("SELECT * FROM animals WHERE paddock_id = ?");
+//     $request->execute([$animal->id]);
+// }
+
+    // public function countAnimals(){
+    //     include './config/db.php';
+    //     $req = $db->prepare("SELECT COUNT(*) FROM animals WHERE paddock-id = ?");
+    //     $req->execute();
+    //     $countData = $req->fetchAll();
+
+    //     $counts = [];
+    //     foreach ($countData as $data) {
+
+    //         if($data < 7){
+    //             echo "Vous avez atteinds le nombre maximum d'animaux pour cet enclos";
+    //         }
+            
+            
+
+    //         array_push($counts, $count);
+
+    //     }
+    //     return $counts;
+
+    // }
 
 
 
