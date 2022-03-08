@@ -27,7 +27,7 @@ abstract class Paddock  {
     }
 
     abstract function getType();
-    abstract function getAnimal();
+    
 
     
 

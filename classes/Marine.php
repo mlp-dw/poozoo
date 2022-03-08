@@ -12,13 +12,7 @@ class Marine extends Paddock{
         return 'marine';
     }
    
-    public function getAnimal(){
-        parent::$animals;
-        $data['type'] = 'fish';
-        $animal = new Tiger($data);
-        array_push($animals, $animal);
-        return $animals;;
-    }
+    
 }
 
 ?>
