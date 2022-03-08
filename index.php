@@ -38,10 +38,9 @@
 <?php
 $employee = new Employee();
 $animals = $employee->showAnimals();
-$enclos = $employee->showEnclos()[0];
-$enclos->setName('nouveau_nom');
-$enclos->addAnimal($animals[0]);
-var_dump($enclos);
+
+// $enclos = $employee->showEnclos()[0];
+// var_dump($enclos);
 
 foreach ($animals as $animal) {
     ?>
