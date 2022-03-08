@@ -8,20 +8,9 @@ $data = array(
     'weight'=> $_POST["animal-weight"],
     'type'=> $_POST['animal-specie']
 );
-switch ($data['type']) {
-    case 'tiger':
-    $animal = new Tiger($data);
-        break;
-    case 'fish':
-    $animal = new Fish($data);
-        break;
-            case 'eagle':
-    $animal = new Eagle($data);
-        break;
-            case 'bear':
-    $animal = new Bear($data);
-        break;
-}
+
+$animal = Animal::getSpecie($data);
+
 $employee = new Employee;
 
 $employee->createAnimal($animal);

@@ -4,11 +4,20 @@ class Aquarium extends Enclos{
 
     public $salinity;
 
-    public function clean(){
+    function __construct($data)
+    {
+        parent::__construct($data);
+        $this->hydrate($data);
 
     }
 
+    public function hydrate($data){
+        $this->salinity = $data['salinity'];
+    }
 
+    public function clean() {
+        if ($this->cleanState > 0) $this->cleanState--;
+    }
 }
 
 ?>

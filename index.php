@@ -38,6 +38,10 @@
 <?php
 $employee = new Employee();
 $animals = $employee->showAnimals();
+$enclos = $employee->showEnclos()[0];
+$enclos->setName('nouveau_nom');
+$enclos->addAnimal($animals[0]);
+var_dump($enclos);
 
 foreach ($animals as $animal) {
     ?>
@@ -49,7 +53,7 @@ foreach ($animals as $animal) {
                     <div>Nom : <?= $animal->name; ?></div>
                     <div>Age : <?= $animal->age; ?></div>
                     <div>Poids : <?= $animal->weight; ?></div>
-                    <div>Taille : <?= $animal->size; ?></div>
+                    <div>Taille : <?= $animal->getSize(); ?></div>
                     <div>Faim : <?= $animal->isHungry; ?></div>
                     <div>Malade : <?= $animal->isSick; ?></div>
                     <div>Dort : <?= $animal->isSleeping; ?></div>

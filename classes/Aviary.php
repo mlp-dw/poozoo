@@ -4,10 +4,21 @@ class Aviary extends Enclos{
 
     public $height;
 
-    public function clean(){
+
+    function __construct($data)
+    {
+        parent::__construct($data);
+        $this->hydrate($data);
 
     }
 
+    public function hydrate($data){
+        $this->height = $data['height'];
+    }
+
+    public function clean() {
+        if ($this->cleanState > 0) $this->cleanState--;
+    }
 }
 
 ?>

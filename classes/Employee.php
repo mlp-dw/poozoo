@@ -7,9 +7,18 @@ public function createAnimal($animal){
 
     include './config/db.php';
     $req = $db->prepare("INSERT INTO animals (name, type, size, weight, age) VALUES (?,?,?,?,?)");
-    $req->execute([$animal->name, $animal->type, $animal->size, $animal->weight, $animal->age]);
+    $req->execute([$animal->name, $animal->getType(), $animal->getSize(), $animal->weight, $animal->age]);
 
 }
+public function createEnclos($enclos){
+
+    include './config/db.php';
+    $req = $db->prepare("INSERT INTO enclos (name, type) VALUES (?,?)");
+    $req->execute([$enclos->name, $enclos->type]);
+
+
+}
+
 public function showAnimals(){
 
     include './config/db.php';
@@ -21,29 +30,31 @@ public function showAnimals(){
     $animals = [];
     foreach ($animalsData as $data) {
 
-        switch ($data['type']) {
-            case 'tiger':
-                $animal = new Tiger($data);
-                break;
-
-            case 'fish':
-                $animal = new Fish($data);
-                break;
-
-            case 'eagle':
-                $animal = new Eagle($data);
-                break;
-
-            case 'bear':
-                $animal = new Bear($data);
-                break;
-
-        }
+        $animal = Animal::getSpecie($data);
 
         array_push($animals, $animal);
 
     }
     return $animals;
+}
+
+public function showEnclos(){
+
+    include './config/db.php';
+
+    $recup= $db->prepare("SELECT * FROM enclos");
+    $recup->execute();
+    $enclosData = $recup->fetchAll();
+    //pour chaque donnés d'animal on retourne un animal
+    $enclos = [];
+    foreach ($enclosData as $data) {
+
+        $enclosSimple = Enclos::getSubType($data);
+
+        array_push($enclos, $enclosSimple);
+
+    }
+    return $enclos;
 }
 
 
