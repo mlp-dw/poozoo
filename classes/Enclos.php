@@ -7,6 +7,7 @@ abstract class Enclos{
     private $name;
     public $cleanState;
     public $animals;
+    private $type;
     static public $CLEANSTATE_CLEAN = 0;
     static public $CLEANSTATE_CORRECT = 1;
     static public $CLEANSTATE_DIRTY = 2;
@@ -19,6 +20,7 @@ abstract class Enclos{
     private function hydrate($data){
         $this->id = $data['id'];
         $this->name = $data['name'];
+        $this->type = $data['type'];
         $this->cleanState = $data['clean_state'] ?? self::$CLEANSTATE_CORRECT;
         $this->animals = isset($data['animals']) ?
          array_map(function($animalData){
@@ -31,22 +33,26 @@ abstract class Enclos{
         return array(
             'id' => $this->id,
             'name' => $this->name,
+            'type' => $this->type,
             'clean_state' => $this->cleanState,
         );
     }
 
     private function persist(){
-        // On enregistre les changements de notre enclos uniquement
         $database = new Database();
         $database->updateRow('enclos', $this->id, $this->toSql());
-        // foreach ($this->animals as $animal)
-        // {
-        //     $animal->persist();
-        // }
     }
 
     public function showStats(){
 
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setType($type) {
+        $this->type = $type;
     }
 
     public function getName() {
@@ -85,17 +91,12 @@ abstract class Enclos{
 
     private function isAnimalCompatible($animal){
         if($this->getAnimalsCount() == 0){
-
              return true;
-
         }
-       if ($animal->getType() == $this->animals[0] ->getType() ){
-
+        if ($animal->getType() == $this->animals[0] ->getType() ){
            return true;
-
-       }
-
-           return false;
+        }
+        return false;
     }
 
     public function removeAnimal($animal){

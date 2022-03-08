@@ -1,6 +1,10 @@
-<?php include "./config/db.php";
-    include './config/autoload.php';
-     ?>
+<?php
+include "./config/db.php";
+include './config/autoload.php';
+$employee = new Employee();
+$animals = $employee->showAnimals();
+$enclos = $employee->showEnclos();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,16 +35,20 @@
             <option value="fish">Poisson</option>
             <option value="eagle">Aigle</option>
         </select>
+        <label for="animal-enclos-input">Enclos</label>
+        <select name="animal-enclos" id="animal-enclos-input">
+            <?php foreach ($enclos as $e) : ?>
+                <option value="<?= $e->id ?>"><?= $e->getName() ?></option>
+            <?php endforeach; ?>
+        </select>
         <button type="submit" class="m-2 p-2 border bg-yellow-100 hover:bg-yellow-50">Créer</button>
     </form>
     <div class="zoo flex flex-wrap ">
         <div class="enclosure w-96 h-96 m-3 border border-green-400 border-2 rounded-xl flex flex-wrap justify-center">
 <?php
-$employee = new Employee();
-$animals = $employee->showAnimals();
 
-// $enclos = $employee->showEnclos()[0];
-// var_dump($enclos);
+$enclos[0]->setName('enclos-test');
+var_dump($enclos);
 
 foreach ($animals as $animal) {
     ?>

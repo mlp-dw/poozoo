@@ -6,7 +6,8 @@ $data = array(
     'size'=> $_POST['animal-size'],
     'age'=> $_POST['animal-age'],
     'weight'=> $_POST["animal-weight"],
-    'type'=> $_POST['animal-specie']
+    'type'=> $_POST['animal-specie'],
+    'enclos_id'=> $_POST['animal-enclos']
 );
 
 $animal = Animal::getSpecie($data);
