@@ -42,7 +42,7 @@ $animals = $employee->showAnimals();
 foreach ($animals as $animal) {
     ?>
 
-            <div class="group animal <?= $animal->getType() ?> relative w-28 h-44 m-1 border border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
+            <div class="group animal <?= $animal->getType() ?> relative w-28 h-44 m-1 border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
                 <div class="font-bold"><?= $animal->name; ?></div>
                 <div class="italic"><?= $animal->age;?> ans</div>
                 <div class="animal-details bg-white absolute top-0 bottom-0 left-0 right-0 hidden group-hover:block">
@@ -64,7 +64,7 @@ foreach ($animals as $animal) {
 </div>
 <?php
 if (isset($_GET['alert'])) : ?>
-<div class="absolute sticky bottom-3 left-0 right-0 p-5 m-3 bg-red-100 border border-red-400"><?= $_GET['alert'] ?></div>
+<div class="sticky bottom-3 left-0 right-0 p-5 m-3 bg-red-100 border border-red-400"><?= $_GET['alert'] ?></div>
 <?php endif; ?>
 </body>
 </html>

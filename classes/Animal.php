@@ -4,7 +4,7 @@ abstract class Animal  {
 
     public $name;
     public $age;
-    public $size;
+    private $size;
     public $weight;
     public $isSleeping;
     public $isHungry;
@@ -13,6 +13,18 @@ abstract class Animal  {
 function __construct($data)
 {
     $this->hydrate($data);
+}
+
+public function getSize(){
+    return $this->size;
+}
+
+public function setSize(int $size){
+    if($size > 0){
+        $this->size = $size;
+    }else{
+        throw new Exception("Animal size has to be a positive integer. " . strval($size) . " given");
+    }
 }
 
 public function eat(){
