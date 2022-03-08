@@ -47,9 +47,6 @@ $enclos = $employee->showEnclos();
         <div class="enclosure w-96 h-96 m-3 border border-green-400 border-2 rounded-xl flex flex-wrap justify-center">
 <?php
 
-$enclos[0]->setName('enclos-test');
-var_dump($enclos);
-
 foreach ($animals as $animal) {
     ?>
 
