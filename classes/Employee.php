@@ -5,16 +5,20 @@ class Employee{
 
 public function createAnimal($animal){
 
-    include '../config/db.php';
-    $req = $db->prepare("INSERT INTO animals (name, type, size, weight, age, paddock_id) VALUES (?,?,?,?,?,?)");
-    $req->execute([$animal->name, $animal->getType(), $animal->size, $animal->weight, $animal->age, $animal->paddockId]);
-
-    // $animalId = $db->lastInsertId();
-
-    // $paddockChoice = $db->prepare("INSERT INTO paddocks (type, id) VALUES (?, ?)");
-    // $paddockChoice->execute($animal-> $qqch, $animalId]);
+    include './config/db.php';
+    $req = $db->prepare("INSERT INTO animals (name, type, size, weight, age, enclos_id) VALUES (?,?,?,?,?,?)");
+    $req->execute([$animal->name, $animal->getType(), $animal->getSize(), $animal->weight, $animal->age, $animal->getEnclosId()]);
 
 }
+public function createEnclos($enclos){
+
+    include './config/db.php';
+    $req = $db->prepare("INSERT INTO enclos (name, type) VALUES (?,?)");
+    $req->execute([$enclos->getName(), $enclos->getType()]);
+
+
+}
+
 public function showAnimals(){
 
     include './config/db.php';
@@ -26,101 +30,36 @@ public function showAnimals(){
     $animals = [];
     foreach ($animalsData as $data) {
 
-        switch ($data['type']) {
-            case 'tiger':
-                $animal = new Tiger($data);
-                break;
-
-            case 'fish':
-                $animal = new Fish($data);
-                break;
-
-            case 'eagle':
-                $animal = new Eagle($data);
-                break;
-
-            case 'bear':
-                $animal = new Bear($data);
-                break;
-
-        }
+        $animal = Animal::getSpecie($data);
 
         array_push($animals, $animal);
 
     }
     return $animals;
 }
-/////////////////////////////////////////////////////////////////////
-//PADDOCK
 
-public function createPaddock($paddock){
-
-    include '../config/db.php';
-    $req = $db->prepare("INSERT INTO paddocks (name, type) VALUES (?,?)");
-    $req->execute([$paddock->name, $paddock->getType()]);
-
-}
-
-public function showPaddocks(){
+public function showEnclos(){
 
     include './config/db.php';
-
-    $recup= $db->prepare("SELECT * FROM paddocks");
+    // On récupère les données des enclos_
+    $recup= $db->prepare("SELECT * FROM enclos");
     $recup->execute();
-    $paddocksData = $recup->fetchAll();
+    $enclosData = $recup->fetchAll();
     //pour chaque donnés d'animal on retourne un animal
-    $paddocks = [];
-    foreach ($paddocksData as $data) {
+    $enclos = [];
+    foreach ($enclosData as $data) {
+        // Pour chaque enclos, on récupère les données des animaux
+        $recup= $db->prepare("SELECT * FROM animals WHERE enclos_id = '".$data['id']."'");
+        $recup->execute();
+        $animalsData = $recup->fetchAll();
+        $data['animals'] = $animalsData;
+        $enclosSimple = Enclos::getSubType($data);
 
-        switch ($data['type']) {
-            case 'aviary':
-                $paddock = new Aviary($data);
-                break;
-
-            case 'marine':
-                $paddock = new Marine($data);
-                break;
-
-            case 'normal':
-                $paddock = new Normal($data);
-                break;
-        }
-
-        array_push($paddocks, $paddock);
+        array_push($enclos, $enclosSimple);
 
     }
-    return $paddocks;
+    return $enclos;
 }
-
-// public function putAnimalInPaddock($animal){
-//     include './config/db.php';
-//     $request = $db->prepare("SELECT * FROM animals WHERE paddock_id = ?");
-//     $request->execute([$animal->id]);
-// }
-
-    // public function countAnimals(){
-    //     include './config/db.php';
-    //     $req = $db->prepare("SELECT COUNT(*) FROM animals WHERE paddock-id = ?");
-    //     $req->execute();
-    //     $countData = $req->fetchAll();
-
-    //     $counts = [];
-    //     foreach ($countData as $data) {
-
-    //         if($data < 7){
-    //             echo "Vous avez atteinds le nombre maximum d'animaux pour cet enclos";
-    //         }
-            
-            
-
-    //         array_push($counts, $count);
-
-    //     }
-    //     return $counts;
-
-    // }
-
-
 
 
 }
