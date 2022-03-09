@@ -4,6 +4,11 @@ include './config/autoload.php';
 $employee = new Employee();
 $animals = $employee->showAnimals();
 $enclos = $employee->showEnclos();
+$countZoo = $employee->getCountAnimalsZoo();
+//$workers = $employee->getEmployeeDetails();
+// echo "<pre>";
+// print_r($worker);
+// echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +22,14 @@ $enclos = $employee->showEnclos();
     <title>PooZoo</title>
 </head>
 <body>
+    <h1 class="m-12 text-6xl text-center font-bold"> Bienvenue à Zootopie</h1>
+    <div class="m-6">
+        Vous êtes l'incarnation de 
+        <select name="" id="">
+            <option value="<?= $worker->id ?>"></option>
+        </select>
+    </div>
+<!-- FORMULAIRES -->
     <div class="flex flex-row">
         <form action="new_animal.php" method="post" class="flex flex-col w-35 p-3 border">
             <h2 class="font-bold">Nouvel animal</h2>
@@ -38,7 +51,7 @@ $enclos = $employee->showEnclos();
             <label for="animal-enclos-input">Enclos</label>
             <select name="animal-enclos" id="animal-enclos-input">
                 <?php foreach ($enclos as $e) : ?>
-                    <option value="<?= $e->id ?>"><?= $e->getName() ?></option>
+                    <option value="<?= $e->id ?>"><?= $e->getName() ?> (<?= $e->getType()?>)</option>
                 <?php endforeach; ?>
             </select>
             <button type="submit" class="m-2 p-2 border bg-yellow-100 hover:bg-yellow-500">Créer</button>
@@ -58,14 +71,15 @@ $enclos = $employee->showEnclos();
         </form>
     </div>
 
-    <h2 class="font-bold">Tous les animaux du zoo</h2>
+<!-- VISION DE TOUS LES ANIMAUX -->
+    <h2 class="ml-6 font-bold">Tous les animaux du zoo (soit <?= $countZoo[0] ?> au total)</h2>
     <div class="zoo flex flex-wrap ">
         <div class="enclosure w-full h-96 m-3 border border-green-400 border-2 rounded-xl flex flex-wrap justify-center">
             <?php
             foreach ($animals as $animal) {
             ?>
 
-            <div class="group animal <?= $animal->getType() ?> relative w-28 h-44 m-1 border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
+            <div class="group animal <?= $animal->getType() ?> bg-white relative w-28 h-44 m-1 border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
                 <div class="font-bold"><?= $animal->name; ?></div>
                 <div class="italic"><?= $animal->age;?> ans</div>
                 <div class="animal-details bg-white absolute top-0 bottom-0 left-0 right-0 hidden group-hover:block">
@@ -85,7 +99,7 @@ $enclos = $employee->showEnclos();
         </div>
     </div>
 
-
+<!-- CHAQUE ENCLOS ET LEURS ANIMAUX -->
     <?php
     foreach ($enclos as $e) {
     ?>
@@ -103,25 +117,25 @@ $enclos = $employee->showEnclos();
         <div class="enclosure w-96 h-96 m-3 <?= $e->getType()?> flex flex-wrap justify-center">
            
             <?php
-            $animals = $employee->showAnimals();
-
             foreach ($animals as $animal) {
-                ?>
-
-                        <div class="group animal <?= $animal->getType() ?> relative w-28 h-44 m-1 border border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
-                            <div class="font-bold"><?= $animal->name; ?></div>
-                            <div class="italic"><?= $animal->age;?> ans</div>
-                            <div class="animal-details bg-white absolute top-0 bottom-0 left-0 right-0 hidden group-hover:block">
-                                <div>Nom : <?= $animal->name; ?></div>
-                                <div>Age : <?= $animal->age; ?></div>
-                                <div>Poids : <?= $animal->weight; ?></div>
-                                <div>Taille : <?= $animal->getSize(); ?></div>
-                                <div>Faim : <?= $animal->isHungry; ?></div>
-                                <div>Malade : <?= $animal->isSick; ?></div>
-                                <div>Dort : <?= $animal->isSleeping; ?></div>
-                            </div>
-                        </div>
+                if($animal->getEnclosId() == $e->id){
+            ?>
+                <div class="group animal <?= $animal->getType() ?> bg-white relative w-28 h-44 m-1 border border-2 border-gray-300 rounded-xl flex flex-col justify-end items-center bg-contain bg-no-repeat">
+                    <div class="font-bold"><?= $animal->name; ?></div>
+                    <div class="italic"><?= $animal->age;?> ans</div>
+                    <div class="animal-details bg-white absolute top-0 bottom-0 left-0 right-0 hidden group-hover:block">
+                        <div>Nom : <?= $animal->name; ?></div>
+                        <div>Age : <?= $animal->age; ?></div>
+                        <div>Poids : <?= $animal->weight; ?></div>
+                        <div>Taille : <?= $animal->getSize(); ?></div>
+                        <div>Faim : <?= $animal->isHungry; ?></div>
+                        <div>Malade : <?= $animal->isSick; ?></div>
+                        <div>Dort : <?= $animal->isSleeping; ?></div>
+                    </div>
+                </div>
+                
             <?php
+                }
             }
             ?>
         </div>

@@ -89,11 +89,11 @@ abstract class Enclos{
         }
     }
 
-    private function isAnimalCompatible($animal){
+    public function isAnimalCompatible($animal){
         if($this->getAnimalsCount() == 0){
              return true;
         }
-        if ($animal->getType() == $this->animals[0] ->getType() ){
+        if ($animal->getType() == $this->animals[0]->getType() ){
            return true;
         }
         return false;

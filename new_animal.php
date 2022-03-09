@@ -11,9 +11,10 @@ $data = array(
 );
 
 $animal = Animal::getSpecie($data);
-
 $employee = new Employee;
 
-$employee->createAnimal($animal);
+$enclos = $employee->selectEnclos($data["enclos_id"]);
+
+$employee->createAnimal($animal, $enclos);
 
 header("Location: ./index.php");
