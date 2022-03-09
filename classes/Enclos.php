@@ -18,7 +18,7 @@ abstract class Enclos{
     }
 
     private function hydrate($data){
-        $this->id = $data['id'];
+        $this->id = $data['id'] ?? null;
         $this->name = $data['name'];
         $this->type = $data['type'];
         $this->cleanState = $data['clean_state'] ?? self::$CLEANSTATE_CORRECT;

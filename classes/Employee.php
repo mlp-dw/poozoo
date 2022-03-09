@@ -14,7 +14,7 @@ public function createEnclos($enclos){
 
     include './config/db.php';
     $req = $db->prepare("INSERT INTO enclos (name, type) VALUES (?,?)");
-    $req->execute([$enclos->name, $enclos->type]);
+    $req->execute([$enclos->getName(), $enclos->getType()]);
 
 
 }

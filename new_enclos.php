@@ -3,7 +3,7 @@
 include './config/autoload.php';
 $data = array(
     'name'=> $_POST['enclos-name'],
-    'type'=> $_POST['enclos-specie']
+    'type'=> $_POST['enclos-type']
 );
 
 switch ($data['type']) {
@@ -20,3 +20,4 @@ switch ($data['type']) {
 $employee = new Employee;
 
 $employee->createEnclos($enclos);
+header("Location: ./index.php");

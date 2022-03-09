@@ -12,7 +12,7 @@ class Aquarium extends Enclos{
     }
 
     public function hydrate($data){
-        $this->salinity = $data['salinity'];
+        $this->salinity = $data['salinity'] ?? 100;
     }
 
     public function clean() {

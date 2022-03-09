@@ -13,7 +13,7 @@ class Aviary extends Enclos{
     }
 
     public function hydrate($data){
-        $this->height = $data['height'];
+        $this->height = $data['height'] ?? 100;
     }
 
     public function clean() {
