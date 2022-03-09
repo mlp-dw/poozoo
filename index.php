@@ -57,12 +57,8 @@ $enclos = $employee->showEnclos();
             <button type="submit" class="m-2 p-2 border bg-yellow-100 hover:bg-yellow-500">Créer</button>
         </form>
     </div>
-<<<<<<< HEAD
 
     <h2 class="font-bold">Tous les animaux du zoo</h2>
-=======
-  
->>>>>>> 157aa0d3d552de8a32c9cba90a109465c8dc15ba
     <div class="zoo flex flex-wrap ">
         <div class="enclosure w-full h-96 m-3 border border-green-400 border-2 rounded-xl flex flex-wrap justify-center">
             <?php
